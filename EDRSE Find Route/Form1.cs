@@ -17,7 +17,6 @@ namespace EDRSE_Find_Route
     {
         findroute.star_st start = new findroute.star_st();
         findroute.star_st end = new findroute.star_st();
-        findroute fr = new findroute();
         string savefilename = "DEFAULT";
         enum state { route = 0, zen = 1 }
         static state prog = state.route;
@@ -41,7 +40,7 @@ namespace EDRSE_Find_Route
             switch (button1.Text)
             {
                 case "Find Route":
-                    timer1.Start();
+                    findroute fr = new findroute();
                     switch (comboBox1.SelectedIndex)
                     {
                         case 0:
@@ -71,6 +70,8 @@ namespace EDRSE_Find_Route
                         return;
                     backgroundWorker1.WorkerSupportsCancellation = true;
                     backgroundWorker1.RunWorkerAsync();
+                    percent = 0;
+                    timer1.Start();
                     button1.Text = "Cancel";
                     break;
                 case "Cancel":
@@ -84,8 +85,7 @@ namespace EDRSE_Find_Route
         }
         private void setProgress(object sender, EventArgs e)
         {
-            progressBar1.Step = percent - progressBar1.Step;
-            progressBar1.PerformStep();
+            progressBar1.Value = percent;
             if(!backgroundWorker1.IsBusy)
             {
                 timer1.Stop();
@@ -101,6 +101,7 @@ namespace EDRSE_Find_Route
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            findroute fr = new findroute();
             List<findroute.star_st> list = new List<findroute.star_st>();
             list.Add(start);
             double totaldist = 0;
