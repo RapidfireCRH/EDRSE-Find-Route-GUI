@@ -207,7 +207,7 @@ namespace EDRSE_Find_Route
         {
             if (firstrun)
                 return;
-            conn = new NpgsqlConnection("SERVER=cyberlord.de; Port=5432; Database=edmc_rse_db; User ID=edmc_rse_user; Password=asdfplkjiouw3875948zksmdxnf;Timeout=12;Application Name=nextinroutev" + version_major + "." + version_minor + (beta==true?"b|":"|") + version_date + ";Keepalive=60;");
+            conn = new NpgsqlConnection("SERVER=cyberlord.de; Port=5432; Database=edmc_rse_db; User ID=edmc_rse_user; Password=asdfplkjiouw3875948zksmdxnf;Timeout=12;Application Name=nextinroutev" + version_major + "." + version_minor + (beta==true?"b-GUI|":"-GUI|") + version_date + ";Keepalive=60;");
 
             firstrun = true;
         }
